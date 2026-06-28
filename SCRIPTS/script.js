@@ -5,7 +5,7 @@ const resetBtn = document.getElementById('reset');
 
 let canvasBoard =[
     ["", "", ""],
-    ["", "", ""]
+    ["", "", ""],
     ["", "", ""]
 ]
 
@@ -48,24 +48,56 @@ function handleClick(event){
     const x = Math.floor(event.offsetX / cellSize);
     const y = Math.floor(event.offsetY / cellSize);
 
+    const winner = checkWinner();
+    if (winner) {
+        statusText.textContent = `Player ${winner} wins!`;
+        gameOver = true;
+        return;
+    }
+
+    if (isBoardFull()) {
+        statusText.textContent = "It's a tie!";
+        gameOver = true;
+        return;
+    }
+
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    statusText.textContent = `Player ${currentPlayer}'s turn`;
+
 
 }
 
 function checkWinner(){
     const diffCombos = [
-        
-    ]
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]],
+        [[0, 0], [1, 1], [2, 2]],
+        [[0, 2], [1, 1], [2, 0]]
+    ];
+    for (const combo of diffCombos){
 
+    }
+
+}
+
+function isBoardFull(){
+    return canvasBoard.every(row => row.every(cell => cell !== ''));
 }
 function resetGame(){
     canvasBoard = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
 
 ]
 currentPlayer = "X";
+gameOver = false;
+statusTxt.textContent = `its ${currentPlayer}'s turn`;
 draw();
 }
-
+statusTxt.textContent = `its ${currentPlayer}'s turn`;
 draw();
