@@ -19,21 +19,32 @@ canvas.addEventListener('click', handleClick);
 resetBtn.addEventListener('click', resetGame);
 
 function draw(){
-    for(let i = 0; i < 3; i++){
-        for(let j = 0; j < 3; j++){
-            const x = i * cellSize;
-            const y = j * cellSize;
-            ctx.strokeRect(x, y, cellSize, cellSize);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#332";
 
-            if( canvasBoard[i][j] === ""){
+    for(let row = 0; row < 3; row++){
+        for(let col = 0; col < 3; col++){
+            const x = row * cellSize;
+            const y = col * cellSize;
+            ctx.strokeRect(row, col, cellSize, cellSize);
+            
+            const val = canvasBoard[row][col];
+            if( val !== ""){
                 ctx.font = "70px arial";
-                ctx.textAlign = "centar";            
+                ctx.textAlign = "centar";        
+                ctx.fillStyle = '#000';
+                ctx.textBaseline = 'middle';    
                 ctx.fillText(canvasBoard[i][j], x + 30, y +70)};
         }
     }
 }
 
 function handleClick(event){
+    if(gameOver){
+        return;
+    }
+
     const x = Math.floor(event.offsetX / cellSize);
     const y = Math.floor(event.offsetY / cellSize);
 
@@ -41,6 +52,9 @@ function handleClick(event){
 }
 
 function checkWinner(){
+    const diffCombos = [
+        
+    ]
 
 }
 function resetGame(){
