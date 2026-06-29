@@ -48,15 +48,25 @@ function handleClick(event){
     const x = Math.floor(event.offsetX / cellSize);
     const y = Math.floor(event.offsetY / cellSize);
 
+    if(y < 2 || y > 2 || x < 2 || x > 2){
+        return;
+    }
+    if(canvasBoard[y][x] !== ""){
+        return;
+    }
+
+    canvasBoard[y][x] =currentPlayer;
+    draw();
+
     const winner = checkWinner();
     if (winner) {
-        statusText.textContent = `Player ${winner} wins!`;
+        statusTxt.textContent = `Player ${winner} wins!`;
         gameOver = true;
         return;
     }
 
     if (isBoardFull()) {
-        statusText.textContent = "It's a tie!";
+        statusTxt.textContent = "It's a tie!";
         gameOver = true;
         return;
     }
@@ -79,7 +89,14 @@ function checkWinner(){
         [[0, 2], [1, 1], [2, 0]]
     ];
     for (const combo of diffCombos){
-
+        const [a, b, c] = combo;
+        if (
+            canvasBoard[a[0]][a[1]] === currentPlayer &&
+            canvasBoard[b[0]][b[1]] === currentPlayer &&
+            canvasBoard[c[0]][c[1]] === currentPlayer
+        ) {
+            return currentPlayer;
+        }
     }
 
 }
