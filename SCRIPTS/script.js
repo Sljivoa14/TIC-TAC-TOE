@@ -118,3 +118,5 @@ draw();
 }
 statusTxt.textContent = `its ${currentPlayer}'s turn`;
 draw();
+
+//will add more
