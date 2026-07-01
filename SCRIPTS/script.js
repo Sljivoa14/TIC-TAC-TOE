@@ -1,11 +1,12 @@
-// get refrence and connect all
-console.log("Script loaded!");
-console.log("Canvas element:", document.getElementById('Canvas'));
-console.log("Canvas context:", document.getElementById('Canvas')?.getContext('2d'));
-
-//const ctx = canvas.getContext('2d');
-//const statusTxt = document.getElementById('status');
+// get reference and connect all
+const canvas = document.getElementById('Canvas');
+const ctx = canvas.getContext('2d');
+const statusTxt = document.getElementById('status');
 const resetBtn = document.getElementById('reset');
+
+console.log("Script loaded!");
+console.log("Canvas element:", canvas);
+console.log("Canvas context:", ctx);
 
 //create a 2D array to represent the game board 
 let canvasBoard =[
@@ -27,6 +28,8 @@ let gameOver = false;
 //evntListeneers for click and reset button
 canvas.addEventListener('click', handleClick);
 resetBtn.addEventListener('click', resetGame);
+
+console.log('Game script loaded');
 
 //function draw works in the following way: it clears the canvas, sets the line width and stroke style, then loops through each cell in the 3x3 grid to draw the grid lines and any X or O marks that have been placed. It uses the canvas context to draw rectangles for the grid and text for the player marks.
 function draw(){
