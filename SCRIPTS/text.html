@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300" style="border:2px solid black;"></canvas>
+    <p id="status">Testing...</p>
+    <button id="reset">Reset</button>
+    
+    <script>
+        // Simple test
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const status = document.getElementById('status');
+        const reset = document.getElementById('reset');
+        
+        // Draw a grid
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                ctx.strokeRect(i * 100, j * 100, 100, 100);
+            }
+        }
+        
+        // Draw an X
+        ctx.font = "70px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "blue";
+        ctx.fillText("X", 50, 50);
+        
+        status.textContent = "Test worked!";
+        console.log("Test complete!");
+    </script>
+</body>
+</html>

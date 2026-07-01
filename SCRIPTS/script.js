@@ -1,7 +1,10 @@
 // get refrence and connect all
-const canvas = document.getElementById('Canvas');
-const ctx = canvas.getContext('2d');
-const statusTxt = document.getElementById('status');
+console.log("Script loaded!");
+console.log("Canvas element:", document.getElementById('Canvas'));
+console.log("Canvas context:", document.getElementById('Canvas')?.getContext('2d'));
+
+//const ctx = canvas.getContext('2d');
+//const statusTxt = document.getElementById('status');
 const resetBtn = document.getElementById('reset');
 
 //create a 2D array to represent the game board 
@@ -105,24 +108,15 @@ function checkWinner(){
     ];
     for (const combo of diffCombos){
         const [a, b, c] = combo;
-        if (
-            canvasBoard[a[0]][a[1]] === "" &&
-            canvasBoard[b[0]][b[1]] === currentPlayer &&
-            canvasBoard[c[0]][c[1]] === currentPlayer
-        ) {
+        const valA = canvasBoard[a[0]][a[1]];
+        const valB = canvasBoard[b[0]][b[1]];
+        const valC = canvasBoard[c[0]][c[1]];
 
-            /*const valA = canvasBoard[a[0]][a[1]];
-            const valB = canvasBoard[b[0]][b[1]];
-            const valC = canvasBoard[c[0]][c[1]];
-        
         if (valA !== "" && valA === valB && valA === valC) {
             return valA;  // Return the winner (X or O)
-        }*/
-            return canvasBoard[a[0]][a[1]];  // Return the winner (X or O)
         }
     }
     return null; // no winner
-
 }
 
 function isBoardFull(){
